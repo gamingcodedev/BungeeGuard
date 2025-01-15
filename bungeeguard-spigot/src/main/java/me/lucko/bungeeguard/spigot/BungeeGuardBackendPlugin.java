@@ -87,7 +87,7 @@ public class BungeeGuardBackendPlugin extends JavaPlugin implements BungeeGuardB
             PacketEvents.getAPI().init();
 
             PacketEventsHandshakeListener listener = new PacketEventsHandshakeListener(this, this.tokenStore);
-            listener.registerListener(this);
+            listener.registerListener();
 
         } else {
             getLogger().severe("------------------------------------------------------------");

@@ -27,7 +27,7 @@ public class PacketEventsHandshakeListener extends AbstractHandshakeListener {
         super(plugin, tokenStore);
     }
 
-    public void registerListener(Plugin plugin) {
+    public void registerListener() {
         PacketEvents.getAPI().getEventManager().registerListener(new HandshakeListener(), PacketListenerPriority.HIGHEST);
     }
 
@@ -42,8 +42,7 @@ public class PacketEventsHandshakeListener extends AbstractHandshakeListener {
             Player player = event.getPlayer();
 
             WrapperHandshakingClientHandshake wrapperHandshakingClientHandshake = new WrapperHandshakingClientHandshake(event);
-            int protocolState = wrapperHandshakingClientHandshake.readInt();
-            if (protocolState != 2) {
+            if (!wrapperHandshakingClientHandshake.getIntention().equals(WrapperHandshakingClientHandshake.ConnectionIntention.LOGIN)) {
                 return;
             }
 
